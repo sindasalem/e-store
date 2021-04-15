@@ -1,0 +1,53 @@
+
+<app-navbar></app-navbar>
+
+
+<div>
+  <div class="container">
+    <header class="page-header">
+      <h4 class="page-title">Order N #{{orderId}}</h4>
+    </header>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table table-shopping-cart">
+          <thead>
+          <tr>
+            <th>Product</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let product of products;let i = index">
+            <td class="table-shopping-cart-img">
+              <a href="#">
+                <img src="{{BASE_API + PICTURES + '/' + product?.product?.fileStorageProperties?.uploadDir}}" alt="Image Alternative text" title="Image Title" />
+              </a>
+            </td>
+            <td class="table-shopping-cart-title"><a >{{product?.product?.name}}</a>
+            </td>
+            <td>{{product?.product.price}}</td>
+            <td>
+              <input width="200px" class="form-control table-shopping-qty" type="text" value="{{product.quantity}}" />
+            </td>
+            <td>{{product.quantity * product?.product.price}}</td>
+
+          </tr>
+
+          </tbody>
+        </table>
+        <div class="gap gap-small"></div>
+      </div>
+    </div>
+    <ul class="list-inline">
+      <li><a class="btn btn-default" routerLink="/order-list">Back</a>
+      </li>
+    </ul>
+  </div>
+  <div class="gap"></div>
+</div>
+
+
+<app-footer></app-footer>

@@ -1,0 +1,62 @@
+
+<app-navbar></app-navbar>
+
+
+<div>
+  <div class="container">
+    <header class="page-header">
+      <h1 class="page-title">My Orders</h1>
+    </header>
+    <div class="row">
+      <div class="col-md-10">
+        <table class="table table table-shopping-cart">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Status</th>
+            <th>Submit Date</th>
+            <th>Details</th>
+            <th>Remove</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let order of orders | paginate: { itemsPerPage: 5, currentPage: p };let i = index ">
+            <td class="table-shopping-cart-img">
+              {{order?.id}}
+            </td>
+            <td class="table-shopping-cart-title"><a style="font-weight: bold">{{order?.status}}</a>
+            </td>
+            <td>{{order?.dateCreated}}</td>
+            <td>
+              <a class="btn btn-primary" [routerLink]="['/order-details', order?.id]">Details</a>
+            </td>
+            <td>
+              <a (click)="removeBook(i)" class="fa fa-close table-shopping-remove" ></a>
+            </td>
+          </tr>
+
+          </tbody>
+        </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+        <div class="gap gap-small"></div>
+      </div>
+      <div class="col-md-2">
+        <ul class="shopping-cart-total-list">
+          <li><span>Subtotal</span><span>74 TN</span>
+          </li>
+          <li><span>Shopping</span><span>Free</span>
+          </li>
+          <li><span>Taxes</span><span>$0</span>
+          </li>
+          <li><span>Total</span><span>74 TN</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="gap"></div>
+</div>
+
+
+<app-footer></app-footer>
